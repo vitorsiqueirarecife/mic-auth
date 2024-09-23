@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 
 @Controller()
-export class AppController {
+export class HealthController {
   constructor() {}
 
-  @Get('health')
-  getHealth(): string {
-    return null;
+  @Get('')
+  check(): string {
+    return 'active';
   }
 }

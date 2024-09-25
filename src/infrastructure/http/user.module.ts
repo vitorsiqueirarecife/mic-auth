@@ -4,6 +4,7 @@ import { UserService } from 'src/application/services/user.service';
 import { UserResolver } from 'src/presentation/resolvers/user.resolver';
 import { SUser, UserSchema } from '../db/mongodb/schemas/user.schema';
 import { MongooseUserModel } from '../db/mongodb/models/mongoose.user.model';
+import { USER_SERVICE } from 'src/domain/interfaces/user.service.interface';
 
 @Module({
   imports: [
@@ -11,9 +12,9 @@ import { MongooseUserModel } from '../db/mongodb/models/mongoose.user.model';
   ],
   providers: [
     UserResolver,
-    UserService,
+    { provide: USER_SERVICE, useClass: UserService },
     { provide: 'IUserModel', useClass: MongooseUserModel },
   ],
-  exports: [],
+  exports: [USER_SERVICE],
 })
 export class UserModule {}

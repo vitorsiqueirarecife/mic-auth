@@ -4,11 +4,11 @@ import { IUser } from 'src/domain/interfaces/user.interface';
 
 export type UserDocument = IUser & Document;
 
-@Schema()
+@Schema({ collection: 'users' })
 export class SUser implements IUser {
   @Prop({ required: true, unique: true })
   id: string;
-  
+
   @Prop({ required: true })
   name: string;
 

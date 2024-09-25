@@ -11,16 +11,5 @@ type User {
 }
 
 type Query {
-  users: [User!]!
-}
-
-type Mutation {
-  createUser(input: CreateUserDto!): User!
-}
-
-input CreateUserDto {
-  name: String!
-  email: String!
-  password: String!
-  passwordConfirmation: String!
+  searchUsers(name: String!): [User!]!
 }

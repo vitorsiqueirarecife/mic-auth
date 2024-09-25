@@ -15,11 +15,11 @@ import { MongooseModule } from '@nestjs/mongoose';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       introspection: process.env.NODE_ENV !== 'production',
       playground: process.env.NODE_ENV !== 'production',
-    }),    
+    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGO_URI'),
+      useFactory: async () => ({
+        uri: process.env.MONGO_APP_URI,
       }),
       inject: [ConfigService],
     }),

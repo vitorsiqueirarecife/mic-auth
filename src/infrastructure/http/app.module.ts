@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UserController } from 'src/presentation/controllers/user.controller';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     UserModule,
   ],
-  controllers: [HealthController],
+  controllers: [HealthController, UserController],
   providers: [],
 })
 export class AppModule {}

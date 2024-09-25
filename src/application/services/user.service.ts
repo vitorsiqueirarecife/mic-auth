@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { SUser, UserDocument } from 'src/infrastructure/db/mongodb/schemas/user.schema';
-
+import {
+  SUser,
+  UserDocument,
+} from 'src/infrastructure/db/mongodb/schemas/user.schema';
 
 @Injectable()
 export class UserService {
@@ -11,6 +13,8 @@ export class UserService {
   ) {}
 
   async findUsersByName(name: string): Promise<SUser[]> {
-    return this.userModel.find({ name: { $regex: name, $options: 'i' } }).exec();
+    return this.userModel
+      .find({ name: { $regex: name, $options: 'i' } })
+      .exec();
   }
 }

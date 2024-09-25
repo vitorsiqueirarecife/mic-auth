@@ -1,15 +1,8 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { IUser } from '../interfaces/user.interface';
 
-export abstract class AUser implements IUser {
-  abstract id: string;
-  abstract name: string;
-  abstract email: string;
-  abstract password: string;
-}
-
 @ObjectType()
-export class User implements AUser {
+export class User implements IUser {
   @Field(() => ID)
   id: string;
 

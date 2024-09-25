@@ -4,7 +4,7 @@ import { Controller, Get } from '@nestjs/common';
 export class HealthController {
   constructor() {}
 
-  @Get('')
+  @Get()
   check(): string {
     return 'active';
   }

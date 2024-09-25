@@ -1,20 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import {
-  SUser,
-  UserDocument,
-} from 'src/infrastructure/db/mongodb/schemas/user.schema';
+import { Injectable, Inject } from '@nestjs/common';
+import { IUserModel } from 'src/domain/interfaces/user.model.interface';
+import { SUser } from 'src/infrastructure/db/mongodb/schemas/user.schema';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectModel(SUser.name) private userModel: Model<UserDocument>,
-  ) {}
+  constructor(@Inject('IUserModel') private userModel: IUserModel) {}
 
-  async findUsersByName(name: string): Promise<SUser[]> {
-    return this.userModel
-      .find({ name: { $regex: name, $options: 'i' } })
-      .exec();
+  async create(user: SUser): Promise<SUser> {
+    return this.userModel.create(user);
+  }
+
+  async findByName(name: string): Promise<SUser[]> {
+    return this.userModel.findByName(name);
   }
 }

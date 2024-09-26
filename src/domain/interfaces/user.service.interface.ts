@@ -1,8 +1,8 @@
-import { SUser } from 'src/infrastructure/db/mongodb/schemas/user.schema';
+import { IUser } from './user.interface';
 
 export const USER_SERVICE = 'IUserService';
 
 export interface IUserService {
-  create(user: SUser): Promise<SUser>;
-  findByName(name: string): Promise<SUser[]>;
+  create(user: IUser): Promise<IUser>;
+  findByName(name: string): Promise<IUser[]>;
 }
